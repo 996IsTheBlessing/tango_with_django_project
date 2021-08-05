@@ -110,6 +110,7 @@ def register(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
+            profile.save()
 
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
