@@ -34,7 +34,7 @@ SECRET_KEY = 'jf0!$yq1u#c#=m9z4-xe)_#+7sa706@x6e!)=e7q*5($+3hedj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['makoto519.pythonanywhere.com']
 
 
 # Application definition
