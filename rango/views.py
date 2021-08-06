@@ -106,7 +106,7 @@ def register(request):
 
         username = request.POST.get('username')
         email = request.POST.get('email')
-        password = request.POST.get('password')
+        password = request.POST.get('password1')
 
         if username!="" and email!="" and password!="":
             user=User.objects.get_or_create(username=username)
@@ -114,7 +114,8 @@ def register(request):
             if user[1]:
                 user = user[0]
                 user.email=email
-                user.set_password(user.password)
+                print(username, password)
+                user.set_password(password)
                 user.save()
 
                 profile = UserProfile.objects.create(user=user)
