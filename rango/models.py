@@ -10,6 +10,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
     last_viewed = models.DateField(blank=True,null=True)
     last_viewed = models.DateTimeField(blank=True,null=True)
+    followed = models.ManyToManyField(User,related_name='follow',blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
