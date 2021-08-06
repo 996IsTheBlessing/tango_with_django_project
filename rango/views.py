@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from rango.models import Category, Page
+from rango.models import Category, Page,UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -43,6 +44,7 @@ def show_category(request, category_name_slug):
         pages = Page.objects.filter(category=category)
         category.views = category.views +1
         category.last_viewed = datetime.now()
+        category.followed.set("1")
         category.save()
 
 
