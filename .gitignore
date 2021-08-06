@@ -17,3 +17,4 @@ thumbs.db
 
 .vscode/
 .vscode
+migrations/
