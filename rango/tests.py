@@ -51,6 +51,7 @@ def testindex_view_categories(self):
         self.assertEquals(num_categories, 3)
 
 
+
 """class PageAccessTests(TestCase):
     def test_last_visit_not_in_future(self):
         category = add_category('Django', 1, 1)
