@@ -7,10 +7,22 @@
     
 
 {% block body_block %}
+<link href="{% static 'css/about-style.css' %}" rel="stylesheet">
     <div class="jumbotron p-4">
         <h1>About Us</h1>
     </div>
     
-    <div>
+    <div class="about-follow">
+        <h1>Follow Us</h1>
+        <img src="{% static 'images/QRcode.jpeg' %}" />
+        <div>
+            <a href="https://twitter.com/wxldcs"><span class="about-icon" data-feather="twitter"></span></a>
+            <a href="https://www.instagram.com/xiyuan0821/"><span class="about-icon" data-feather="instagram"></span></a>
+            <a href="https://www.youtube.com/channel/UCPa_CbNIe0dOixDl8IwApBw"><span class="about-icon" data-feather="youtube"></span></a>
+        </div>
+    </div>
+
+    <div class="jumbotron p-4 about-info">
+        <strong>This is 996 is blessing's work. Contributed by Tao Chen, Kun Wang, Xiyuan Xia, Qinxuan Xiong.</strong>
     </div>
 {% endblock %}
