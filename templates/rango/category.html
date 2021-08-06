@@ -10,8 +10,10 @@
 {% endblock %}
 
 {% block body_block %}
+    <div class="jumbotron p-4">
     {% if category %}
     <h1>{{ category.name }}</h1>
+    </div>
     {% if pages %}
     <ul>
         {% for page in pages %}

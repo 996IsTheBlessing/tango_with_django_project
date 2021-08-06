@@ -1,0 +1,31 @@
+#title{
+    font-size: 30px;
+}
+#nav-list{
+    align-self: center;
+}
+#title-search {
+    justify-content: flex-end;
+}
+#nav-list a{
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+}
+#title-icon{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+#about-div{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 15px;
+}
+#login-div{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 15px;
+}

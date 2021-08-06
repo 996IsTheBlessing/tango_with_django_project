@@ -29,19 +29,14 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-sm-3 d-none d-md-block bg-light sidebar">
-                    <div class="col-sm-3 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" style="width: inherit;">
-                        <div class="row">
-                            <a id="title" href="{% url 'rango:index' %}" class="col-md-6 p-3 d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                                <span id="title-icon" data-feather="compass"></span>
-                                <span class="fs-4">Rango</span>
-                            </a >
-                            <a id="title-search" class="align-items-center col-md-6 p-3 d-flex mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                                <span data-feather="search" style="width: 20px; height: 20px;"></span>
-                            </a>
-                        </div>
+                <nav class="col-md-3 d-none d-md-block bg-light sidebar"">
+                    <div class="col-md-3 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" style="width: inherit;">
+                        <a id="title" href="{% url 'rango:index' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                          <span id="title-icon" data-feather="compass"></span>
+                          <span class="fs-4">Rango</span>
+                        </a >
                         <hr>
-                        <ul id="nav-list" class="nav nav-pills flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column mb-auto">
                           <li class="nav-item">
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{% url 'rango:index' %}">
@@ -56,27 +51,19 @@
                         <hr>
                         <div class="container">
                             <div class="row">
-                                {% if user.is_authenticated %}
                                 <div class="dropdown col-md-6">
-                                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                      <img src="{% static 'images/favicon.ico' %}" alt="" width="32" height="32" class="rounded-circle me-2" style="margin-right: 5px;"/>
-                                      <strong>{{ user.username }}</strong>
+                                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"/>
+                                      <strong>mdo</strong>
                                     </a >
-                                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser">
-                                      <li><a class="dropdown-item" href="{% url 'rango:add_category' %}">Add Category</a ></li>
-                                      <li><a class="dropdown-item" href="{% url 'rango:restricted' %}">Restricted</a ></li>
+                                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                                      <li><a class="dropdown-item" href="#">New project...</a ></li>
+                                      <li><a class="dropdown-item" href="#">Settings</a ></li>
                                       <li><a class="dropdown-item" href="#">Profile</a ></li> 
                                       <li><hr class="dropdown-divider"></li> 
-                                      <li><a class="dropdown-item" href="{% url 'rango:logout' %}?next=/rango/">Log out</a ></li> 
+                                      <li><a class="dropdown-item" href=" ">Sign out</a ></li> 
                                     </ul> 
                                 </div> 
-                                {% else %}
-                                <div id="login-div" class="col-md-6">          
-                                    <a class="nav-link text-white" href="{% url 'rango:login' %}">
-                                        <span data-feather="log-in"></span>login
-                                    </a>
-                                </div>
-                                {% endif %}
                                 <div id="about-div" class="col-md-6">          
                                     <a class="nav-link text-white" href="{% url 'rango:about' %}">
                                         <span data-feather="alert-circle"></span>About
@@ -87,9 +74,18 @@
                     </div> 
                 </nav> 
                 
-                <main role="main" class="col-sm-9  ml-sm-auto px-4">		
+                <main role="main" class="col-md-9  ml-sm-auto px-4">		
                     {% block body_block %}{% endblock %}
-                    
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class=="dropdown-item" href="#">Action</a></li>
+                            <li><a class=="dropdown-item" href="#">Another action</a></li>
+                            <li><a class=="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
                     <!-- FOOTER -->
                     <footer>
                         <p class="float-right"><a href="#">Back to top</a></p>
@@ -104,9 +100,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-        <script src="https://getbootstrap.com/docs/5.0/dist/js/jquery.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.js"></script>
     </body>

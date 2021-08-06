@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
-
+def test(request):
+    return render(request, 'rango/test.html')
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
