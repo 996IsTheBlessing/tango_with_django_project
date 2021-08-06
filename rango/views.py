@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.http import HttpResponse
 
 def test(request):
     return render(request, 'rango/test.html')
@@ -181,6 +182,17 @@ def visitor_cookie_handler(request):
     
     request.session['visits'] = visits
 
-
-    
+class LikeCategoryView():
+    @login_required
+    def get(self, request):
+        category_id = request.GET['category_id']
+        try:
+            category = Category.objects.get(id=int(category_id))
+        except Category.DoesNotExist:
+            return HttpResponse(-1)
+        except ValueError:
+            return HttpResponse(-1)
+        category.likes = category.likes + 1
+        category.save()
+        return HttpResponse(category.likes)
         
