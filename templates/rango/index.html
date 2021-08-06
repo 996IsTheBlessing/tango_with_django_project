@@ -4,8 +4,8 @@
 {% block title_block %}
     Homepage
 {% endblock %}
-{% block body_block %}
 <link href="{% static 'css/index-style.css' %}" rel="stylesheet">
+{% block body_block %}
     <div class="container" style="height: 100%;">
         <div class="row">
             
@@ -13,7 +13,7 @@
                 <h1 class="jumbotron-heading">Rango says...</h1>
                 <div>
                 {% if user.is_authenticated %}
-                    howdy {{ user.username }}!
+                    Welcome! {{ user.username }}
                 {% else %}
                     hey there partner!
                 {% endif %}
@@ -33,7 +33,18 @@
                                     </strong>
                                 </div>
                                 <p class="card-text">
-                                    <strong>There are no categories present.</strong>
+                                    {% if categories %}
+                                        <ul class="list-group">
+                                        {% for category in categories %}
+                                            <li class="list-group-item">
+                                                <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}<a>Viewed at :{{ category.last_viewed }}</a>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <strong>There are no categories present.</strong>
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>

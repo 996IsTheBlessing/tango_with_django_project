@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from rango.models import Category, Page, UserProfile
+from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from django.contrib.auth.models import User
 
 def test(request):
     return render(request, 'rango/test.html')
@@ -41,6 +40,10 @@ def show_category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         pages = Page.objects.filter(category=category)
+        category.views = category.views +1
+        category.last_viewed = datetime.now()
+        category.save()
+
 
         context_dict['pages'] = pages
         context_dict['category'] = category
@@ -101,26 +104,23 @@ def register(request):
     registered = False
 
     if request.method == 'POST':
-        user_form=UserForm(request.POST)
-        profile_form=UserProfileForm(request.POST)
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
 
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password1')
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
 
-        if username!="" and email!="" and password!="":
-            user=User.objects.get_or_create(username=username)
-            print(user)
-            if user[1]:
-                user = user[0]
-                user.email=email
-                print(username, password)
-                user.set_password(password)
-                user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
 
-                profile = UserProfile.objects.create(user=user)
-                profile.save()
-                registered = True
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+            
+            profile.save()
+            registered = True
         else:
             print(user_form.errors, profile_form.errors)
     else:
@@ -180,3 +180,7 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     
     request.session['visits'] = visits
+
+
+    
+        

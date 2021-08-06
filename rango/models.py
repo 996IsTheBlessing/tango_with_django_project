@@ -8,7 +8,8 @@ class Category(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-
+    last_viewed = models.DateField(blank=True,null=True)
+    last_viewed = models.DateTimeField(blank=True,null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -47,4 +48,5 @@ class UserFollow(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username+":"+self.category.name
+        return "follow:{},fan:{}".format(self.category.name,self.user.username)
+
