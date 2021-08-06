@@ -5,15 +5,15 @@ from rango.models import Category, Page
 from django.utils import timezone
 
 # Create your tests here.
-class CategoryMethodTests(TestCase):
-    def test_ensure_views_are_positive(self):
+class CategoryTests(TestCase):
+    def testviews_positive(self):
 
     #Ensure that the views in the category are a number greater than or equal to 0.
 
         category = Category(name='test', views=-1, likes=0)
         category.save()
         self.assertEqual((category.views >= 0), True)
-    def test_slug_line_creation(self):
+    def testslug_creation(self):
     # Ensure that when a category is created, a proper lug is created appropriately.
        category = Category(name='Random Category String')
        category.save()
@@ -21,7 +21,7 @@ class CategoryMethodTests(TestCase):
 
 
 class IndexViewTests(TestCase):
-    def test_index_view_with_no_categories(self):
+    def testindex_view(self):
         #If the category does not exist, an appropriate prompt should be displayed
         response = self.client.get(reverse('rango:index'))
         self.assertEqual(response.status_code, 200)
@@ -37,7 +37,7 @@ def add_category(name, views=0, likes=0):
     return category
 def add_page(category, title, url):
     return Page.objects.get_or_create(category=category, title=title, url=url)[0]
-def test_index_view_with_categories(self):
+def testindex_view_categories(self):
       #Check that the correct category is displayed
         add_category('Python', 1, 1)
         add_category('Django', 1, 1)
@@ -49,14 +49,14 @@ def test_index_view_with_categories(self):
         self.assertContains(response, "JAVA")
         num_categories = len(response.context['categories'])
         self.assertEquals(num_categories, 3)
-class PageAccessTests(TestCase):
+
+
+"""class PageAccessTests(TestCase):
     def test_last_visit_not_in_future(self):
         category = add_category('Django', 1, 1)
-        page = add_page(category, 'TwD', 'https://www.tangowithdjango.com')
-
-        self.assertTrue(page.last_visit < timezone.now())
+        self.assertTrue(category.last_viewed < timezone.now())"""
     
-    def test_last_visit_is_updated(self):
+"""  def test_last_visit_is_updated(self):
         category = add_category('Python', 1, 1)
         page = add_page(category, 'Documentation', 'https://docs.python.org/3/')
         created_date = page.last_visit
@@ -67,4 +67,4 @@ class PageAccessTests(TestCase):
         # Refresh the model instance.
         page.refresh_from_db()
 
-        self.assertTrue(page.last_visit > created_date)
+        self.assertTrue(page.last_visit > created_date) """
