@@ -10,9 +10,10 @@
 {% endblock %}
 
 {% block body_block %}
+    <link href="{% static 'css/category-style.css' %}" rel="stylesheet">
     <div class="jumbotron p-4">
     {% if category %}
-    <h1>{{ category.name }}</h1>
+    <div class="title-div"><h1>{{ category.name }}</h1><span data-feather="heart" style="width: 30px; height: 30px;"></span></div>
     <div><strong id="like_count">{{ category.likes }}</strong> likes
         {% if user.is_authenticated %}
         <button id="like_btn"
@@ -25,11 +26,15 @@
         </div>
     </div>
     {% if pages %}
-    <ul>
+    <ol class="list-group">
         {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        <li class="list-group-item">
+            <div class="list-group-div">
+                <a href="{{ page.url }}">{{ page.title }}</a>
+            </div>
+        </li>
         {% endfor %}
-    </ul>
+    </ol>
     {% else %}
     <strong>No pages currently in category.</strong>
     {% endif %}

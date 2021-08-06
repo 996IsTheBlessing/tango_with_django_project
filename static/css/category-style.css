@@ -1,0 +1,18 @@
+.jumbotron{
+    border-radius: 10px;
+}
+.list-group{
+    border-radius: 10px;
+    
+}
+.list-group-item{
+    padding: 10px 20px;
+}
+.title-div{
+    display: flex;
+    align-items: center;
+}
+.title-div h1{
+    justify-self: start;
+    margin-right: 10px;
+}

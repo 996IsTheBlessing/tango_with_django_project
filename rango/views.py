@@ -179,24 +179,6 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = str(datetime.now())
     else:
         request.session['last_visit'] = last_visit_cookie
-    
-<<<<<<< HEAD
+
     request.session['visits'] = visits
 
-class LikeCategoryView():
-    @login_required
-    def get(self, request):
-        category_id = request.GET['category_id']
-        try:
-            category = Category.objects.get(id=int(category_id))
-        except Category.DoesNotExist:
-            return HttpResponse(-1)
-        except ValueError:
-            return HttpResponse(-1)
-        category.likes = category.likes + 1
-        category.save()
-        return HttpResponse(category.likes)
-        
-=======
-    request.session['visits'] = visits
->>>>>>> d628a742541fd565ee126c7e47ca00417cf0d926
