@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load rango_template_tags %}
-<html lang="en">
+<html lang="en" style="height: 100%;">
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,16 +19,16 @@
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.2/examples/dashboard/dashboard.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://getbootstrap.com/docs/5.0/dist/js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.min.js"></script>
     <link href="{% static 'css/base-style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index-style.css' %}" rel="stylesheet">
     <!-- Favicons -->
     </head>
     
-    <body>
-        <div class="container-fluid">
-            <div class="row">
+    <body style="height: 100%;">
+        <div class="container-fluid" style="height: 100%;">
+            <div class="row" style="height: 100%;">
                 <nav class="col-sm-3 d-none d-md-block bg-light sidebar">
                     <div class="col-sm-3 d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" style="width: inherit;">
                         <div class="row">
@@ -48,6 +48,7 @@
                                     <span data-feather="home"></span>Home
                                 </a>
                             </li>
+                            <hr>
                             {% block sidebar_block %}
                                 {% get_category_list category %}
                             {% endblock %}
@@ -87,14 +88,17 @@
                     </div> 
                 </nav> 
                 
-                <main role="main" class="col-sm-9  ml-sm-auto px-4">		
-                    {% block body_block %}{% endblock %}
-                    
+                <main role="main" class="col-sm-9  ml-sm-auto p-4" style="height: 100%;">
+                    <div class="row" style="height: 100%;">
+                        <div>
+                            {% block body_block %}{% endblock %}
+                        </div>
                     <!-- FOOTER -->
-                    <footer>
-                        <p class="float-right"><a href="#">Back to top</a></p>
-                        <p>&copy; 2020 Tango With Django 2 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-                    </footer>
+                        <footer class="align-self-end align-items-center">
+                            <p class="float-right"><a href="#">Back to top</a></p>
+                            <p style="margin: 0;">&copy; 2020 Rango Version 1.0 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                        </footer>
+                    </div>
                 </main>
             </div>
         </div>
@@ -104,7 +108,6 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-        <script src="https://getbootstrap.com/docs/5.0/dist/js/jquery.min.js"></script>
         <script src="https://getbootstrap.com/docs/4.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
