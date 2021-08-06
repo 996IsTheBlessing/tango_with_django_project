@@ -13,13 +13,8 @@
     <link href="{% static 'css/category-style.css' %}" rel="stylesheet">
     <div class="jumbotron p-4">
     {% if category %}
-    <h1>{{ category.name }}</h1>
     <div class="title-div"><h1>{{ category.name }}</h1><span data-feather="heart" style="width: 30px; height: 30px;"></span></div>
     <div><strong id="like_count">{{ category.likes }}</strong> likes
-        <div class="title-div"><h1>{{ category.name }}</h1><span data-feather="heart" style="width: 30px; height: 30px;"></span></div>
-        <div>
-            <strong id="like_count">{{ category.likes }}</strong> likes
-        </div>
     </div>
     {% if pages %}
     <ol class="list-group">
