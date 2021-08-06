@@ -16,6 +16,8 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         if  self.views < 0:
             self.views = 0
+        if self.likes < 0:
+            self.likes = 0
        
         super(Category, self).save(*args, **kwargs)
 
