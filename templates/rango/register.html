@@ -6,57 +6,54 @@
 {% endblock %}
 
 {% block body_block %}
+<link href="{% static 'css/login-style.css' %}" rel="stylesheet">
+{% if registered %}
 <div class="jumbotron p-4">
-    <h1 class="jumbotron-heading">Register for Rango</h1>
-
-    {% if registered %}
     Rango says: <strong>thank you for registering!</strong>
     <a href="{% url 'rango:index' %}">Return to the homepage.</a><br />
-    {% else %}
-    Rango says: <strong>register here!</strong><br />
+</div>
+{% else %}
+<div class="p-4 login-title">
+    <h1>Register for Rango</h1>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="form-group">
-            <form role="form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <p class="required">
-                        <label class="required" for="id_username">
-                            Username:
-                        </label>
-                        <input class="form-control" id="id-username" maxlength="30" name="username" type="text" />
-                        <span class="helptext">
-                            Required. 30 characters or fewer.
-                            Letters, digits and @/./+/-/_ only.
-                        </span>
-                    </p>
-                    <p class="required">
-                        <label class="required" for="id_email">
-                            E-mail:
-                        </label>
-                        <input class="form-control" id="id_email" name="email" type="email" />
-                    </p>
-                    <p class="required">
-                        <label class="required" for="id_password1">
-                            Password:
-                        </label>
-                        <input class="form-control" id="id_password1" name="password1" type="password" />
-                    </p>
-                    <p class="required">
-                        <label class="required" for="id_password2">
-                            Confirm Password:
-                        </label>
-                        <input class="form-control" id="id_password2" name="password2" type="password" />
-                        <span class="helptext">
-                            Enter the same password as before, for verification.
-                        </span>
-                    </p>
-                </div>  
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+    <div class="login-container">
+        <form class="form-signin" role="form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="user"></span>
+                <input id="id_username" class="form-control" placeholder="Username" type="text" name="username" size="50" required autofocus/>
+            </div>
+            <div style="margin-top: 10px; text-align: center; display: none;">
+                <span class="helptext">
+                    Required. 30 characters or fewer.
+                    Letters, digits and @/./+/-/_ only.
+                </span>
+            </div>
+            
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="mail"></span>
+                <input id="id_email" class="form-control" placeholder="Email Address" type="text" name="email" size="50" required/>
+            </div>
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="lock"></span>
+                <input id="id_password1" class="form-control" placeholder="Password" type="password" name="password1" size="50" required/>
+            </div>
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="lock"></span>
+                <input id="id_password2" class="form-control" placeholder="Confirm Password" type="password" name="password2" size="50" required/>
+            </div>
+            <div style="margin-top: 10px; text-align: center; display: none;">
+                <span class="helptext">
+                    Enter the same password as before, for verification.
+                </span>
+            </div>
+            <div class="login-buttons">
+                <button class=" btn btn-log " type="submit" value="Submit" >Register</button>
+                <button class=" btn btn-rg ">Login</button>
+            </div>
+        </form>
+    </div> 
 </div>
 {% endif %}
 {% endblock %}

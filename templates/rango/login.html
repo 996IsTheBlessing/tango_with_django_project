@@ -6,22 +6,27 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-4">
-    <h1 class="jumbotron-heading">Login to Rango</h1>
+<link href="{% static 'css/login-style.css' %}" rel="stylesheet">
+<div class="p-4 login-title">
+    <h1>Login</h1>
 </div>
-<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet">
 <div class="container">
-    <form class="form-signin" role="form" id="login_form" method="post" action="{% url 'rango:login' %}">
-        {% csrf_token %}
-        <label for="inputUsername" class="sr-only">
-            Username
-        </label>
-        <input id="id_username" class="form-control" placeholder="Username" type="text" name="username" size="50" required autofocus/>
-        <label for="inputPassword" class="sr-only">
-            Password:
-        </label>
-        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit" >Sign in</button>
-    </form>
+    <div class="login-container">
+        <form class="form-signin" role="form" id="login_form" method="post" action="{% url 'rango:login' %}">
+            {% csrf_token %}
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="user"></span>
+                <input id="id_username" class="form-control" placeholder="Username" type="text" name="username" size="50" required autofocus/>
+            </div>
+            <div class="login-enter">
+                <span class="login-enter-icon" data-feather="lock"></span>
+                <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required/>
+            </div>
+            <div class="login-buttons">
+                <button class=" btn btn-log " type="submit" value="Submit" >Login</button>
+                <button class=" btn btn-rg ">Register</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -21,8 +21,6 @@
     <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.min.js"></script>
-    <link href="{% static 'css/base-style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/index-style.css' %}" rel="stylesheet">
     <!-- Favicons -->
     </head>
     
@@ -89,14 +87,19 @@
                 </nav> 
                 
                 <main role="main" class="col-sm-9  ml-sm-auto p-4" style="height: 100%;">
+                    <link href="{% static 'css/base-style.css' %}" rel="stylesheet">
                     <div class="row" style="height: 100%;">
                         <div>
                             {% block body_block %}{% endblock %}
                         </div>
                     <!-- FOOTER -->
-                        <footer class="align-self-end align-items-center">
-                            <p class="float-right"><a href="#">Back to top</a></p>
-                            <p style="margin: 0;">&copy; 2020 Rango Version 1.0 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                        <footer class="row" id="base-footer">
+                            <div class="col-md-6" id="footer-info">
+                                <p style="margin: 0;">&copy; 2020 Rango Version 1.0 &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+                            </div>
+                            <div class="col-md-6" id="footer-return">
+                                <p style="margin: 0; align-self: flex-end; width: 100%; text-align: right;"><a href="#">Back to top</a></p>
+                            </div>
                         </footer>
                     </div>
                 </main>

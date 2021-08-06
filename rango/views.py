@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from rango.models import Category, Page
+from rango.models import Category, Page, UserProfile
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.contrib.auth.models import User
 
 def test(request):
     return render(request, 'rango/test.html')
@@ -100,23 +101,25 @@ def register(request):
     registered = False
 
     if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        profile_form = UserProfileForm(request.POST)
+        user_form=UserForm(request.POST)
+        profile_form=UserProfileForm(request.POST)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
+        if username!="" and email!="" and password!="":
+            user=User.objects.get_or_create(username=username)
+            print(user)
+            if user[1]:
+                user = user[0]
+                user.email=email
+                user.set_password(user.password)
+                user.save()
 
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-            
-            profile.save()
-            registered = True
+                profile = UserProfile.objects.create(user=user)
+                profile.save()
+                registered = True
         else:
             print(user_form.errors, profile_form.errors)
     else:
