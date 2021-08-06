@@ -44,7 +44,6 @@ def show_category(request, category_name_slug):
         pages = Page.objects.filter(category=category)
         category.views = category.views +1
         category.last_viewed = datetime.now()
-        category.followed.set("1")
         category.save()
 
 
