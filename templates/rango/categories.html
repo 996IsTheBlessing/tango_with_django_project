@@ -1,5 +1,5 @@
 {% if categories %}
-{% for c in categories %}
+    {% for c in categories %}
             {% if c == current_category %}
             <li>
                 <a href="{% url 'rango:show_category' c.slug %}" class="nav-link active text-white">
@@ -14,8 +14,8 @@
             </li>
             {% endif %}
         {% endfor %}
-    {% else %}
-        <li class="nav-item">
-            There are no categories present.
-        </li>
-    {% endif %}
+{% else %}
+    <li class="nav-item">
+        There are no categories present.
+    </li>
+{% endif %}

@@ -180,6 +180,7 @@ def visitor_cookie_handler(request):
     else:
         request.session['last_visit'] = last_visit_cookie
     
+<<<<<<< HEAD
     request.session['visits'] = visits
 
 class LikeCategoryView():
@@ -196,3 +197,6 @@ class LikeCategoryView():
         category.save()
         return HttpResponse(category.likes)
         
+=======
+    request.session['visits'] = visits
+>>>>>>> d628a742541fd565ee126c7e47ca00417cf0d926

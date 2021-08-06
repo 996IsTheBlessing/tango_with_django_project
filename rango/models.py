@@ -48,5 +48,5 @@ class UserFollow(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "follow:{},fan:{}".format(self.category.name,self.user.username)
+        return "follow:{},fan:{}".format(self.category.name, self.user.username)
 
