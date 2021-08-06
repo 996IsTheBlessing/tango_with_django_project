@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from rango.models import Category, Page,UserProfile
+from rango.models import Category, Page,UserProfile,UserFollow
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -14,11 +14,13 @@ def test(request):
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
+    recent_category = Category.objects.order_by('-last_viewed')[:3]
     page_list = Page.objects.order_by('-views')[:5]
 
     context_dict = {}
     context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     context_dict['categories'] = category_list
+    context_dict['categories'] = recent_category
     context_dict['pages'] = page_list
     
     visitor_cookie_handler(request)
@@ -44,6 +46,7 @@ def show_category(request, category_name_slug):
         pages = Page.objects.filter(category=category)
         category.views = category.views +1
         category.last_viewed = datetime.now()
+        category.likes = category.likes+1
         category.save()
 
 
@@ -182,3 +185,16 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
 
     request.session['visits'] = visits
+
+@login_required
+def follow(request,username):
+    username=request.GET['username']
+    categoryname=request.GET['categoryname']
+    try:
+        print(username,categoryname)
+        user=User.objects.get(username=username)
+        category=Category.objects.get(name=categoryname)
+    except ValueError:
+        return HttpResponse(-1)        
+    userfollow=UserFollow.objects.get_or_create(user=user, category=category)[1]
+    userfollow.save()

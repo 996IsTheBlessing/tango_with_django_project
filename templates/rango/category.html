@@ -10,13 +10,19 @@
 {% endblock %}
 
 {% block body_block %}
+    <script src="{% static 'js/rango.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+crossorigin="anonymous"></script>
+    {% csrf_token %}
     <link href="{% static 'css/category-style.css' %}" rel="stylesheet">
     <div class="jumbotron p-4">
     {% if category %}
         <div class="title-div">
-            <h1>{{ category.name }}</h1>
+            <h1 id="cate-title">{{ category.name }}</h1>
             {% if user.is_authenticated %}
-            <span data-feather="heart" style="width: 30px; height: 30px;"></span>
+            <span id="cate-username" style="display: none;">{{user.username}}</span>
+            <span onclick="follow()" id="like-icon" data-feather="heart" style="width: 30px; height: 30px;color: black"></span>
             {% endif %}
         </div>
         <div>

@@ -58,7 +58,17 @@
                                     </strong>
                                 </div>
                                 <p class="card-text">
-                                    <strong>There are no categories present.</strong>
+                                    {% if categories %}
+                                        <ul class="list-group">
+                                        {% for category in categories %}
+                                            <li class="list-group-item">
+                                                <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <strong>There are no categories present.</strong>
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>
