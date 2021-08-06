@@ -15,7 +15,9 @@
     {% if category %}
         <div class="title-div">
             <h1>{{ category.name }}</h1>
+            {% if user.is_authenticated %}
             <span data-feather="heart" style="width: 30px; height: 30px;"></span>
+            {% endif %}
         </div>
         <div>
             <strong id="like_count">{{ category.likes }}</strong> likes
