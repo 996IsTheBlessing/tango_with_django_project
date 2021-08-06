@@ -126,7 +126,9 @@ def register(request):
                 user.set_password(password)
                 user.save()
                 profile = UserProfile.objects.create(user=user)
+                profile.save()
                 registered = True
+                
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
