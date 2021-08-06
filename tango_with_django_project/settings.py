@@ -35,7 +35,7 @@ with open('secret.key') as f:
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['makoto519.pythonanywhere.com']
 
